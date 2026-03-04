@@ -5,13 +5,13 @@ from aidial_sdk.chat_completion import ChatCompletion, Request, Response
 
 
 class EchoApplication(ChatCompletion):
-    async def chat_completion(
-        self, request: Request, response: Response
-    ) -> None:
+    async def chat_completion(self, request: Request, response: Response) -> None:
         last_user_message = request.messages[-1]
 
         with response.create_single_choice() as choice:
-            choice.append_content(last_user_message.content or "")
+            choice.append_content(
+                f"abracadabra\n{last_user_message.content}" or "Oops..."
+            )
 
 
 app = DIALApp()
